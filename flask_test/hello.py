@@ -8,7 +8,6 @@ def hello_world():
     
     return "<p>Hello, World!</p>"
 
-
 @app.route("/<name>")
 def hello(name):
     return f"Hello, {escape(name)}"
