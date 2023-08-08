@@ -1,12 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Random Dog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with AI</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #image-container {
+            width: 30%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #text-container {
+            width: 70%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #fff;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .typing-container {
+            font-size: 18px;
+            margin-top: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40), blink-caret 0.75s step-end infinite;
+            max-width: 100%;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            border-right: 0.15em solid orange; /* Typing cursor */
+            animation: typing 4s steps(40), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: orange; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Random Dog Image</h1>
-    <img src="{{ image_url }}" alt="Random Dog">
-
-    <div>{{dog_gpt_query_response}}</div>
+    <div id="image-container">
+        <img src="{{ image_url }}" alt="Random Dog">
+    </div>
+    <div id="text-container">
+        <div class="typing-container">{{ dog_gpt_query_response | safe }}</div>
+    </div>
 </body>
 </html>
