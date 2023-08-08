@@ -1,0 +1,45 @@
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Python virtual environment
+venv/
+env/
+myenv/
+.venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Compiled files for other languages
+*.class
+*.o
+*.pyd
+*.so
+*.dll
+
+# Dependency management files
+pip-lock.txt
+pipfile.lock
+requirements.txt
+
+# Local configuration files
+*.env
+
+# macOS specific files
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# Linux core dumps
+core
+core.*
