@@ -6,6 +6,16 @@
     <title>Chat with AI</title>
 </head>
 <body>
-    
+    <h1>Hello, someone.</h1>
+
+    <div class="userInfo">
+        <title>User Data</title>
+        <ul>
+            {%for key,value in userData.items()%}
+                <li><strong> {{key.title()}} </strong> {{value}}</li>
+            {%endfor%}
+        </ul> 
+    </div>
+
 </body>
 </html>

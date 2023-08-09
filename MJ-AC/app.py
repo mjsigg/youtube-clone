@@ -5,6 +5,7 @@ from flask_gzip import Gzip
 from dotenv import load_dotenv
 from chatgpt import initialize_openai
 from dog import select_random_dog, get_random_dog_img
+from index import call_ip_api
 
 # Importing functions from dog_api.py
 
@@ -19,27 +20,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 initialize_openai()
 
 
-@app.route('/')
+@app.route('/', methods = ['GET'])
 def index():
-    return render_template('index.html')
-
-
-# @app.route('/get_response', methods=['POST'])
-# def get_response():
-#     user_message = request.form['user_input']
-
-#     chat_log.append({"role": "user", "content": user_message})
-#     response = openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=chat_log
-#     )
-
-#     assistant_response = response["choices"][0]['message']['content']
-
-#     chat_log.append({"role": "assistant", "content": assistant_response.strip("\n").strip()})
-
-#     return render_template('response.html', assistant_response=assistant_response.strip("\n").strip())
-
+    userData = call_ip_api()
+    return render_template('index.html', userData = userData)
 
 
 @app.route('/dog', methods=['GET'])
@@ -58,7 +42,6 @@ def dog_api():
     random_dog = select_random_dog()
 
     return render_template('dog.html', image_url=dog_img, dog_gpt_query_response=dog_gpt_query_response)
-
 
 
 if __name__ == '__main__':
