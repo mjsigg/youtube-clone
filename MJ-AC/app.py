@@ -1,4 +1,3 @@
-import random
 from flask import Flask, render_template
 import os
 import openai
@@ -6,7 +5,7 @@ from flask_gzip import Gzip
 from dotenv import load_dotenv
 from chatgpt import initialize_openai
 from dog import select_random_dog, get_random_dog_img
-print("hello from in here")
+
 # Importing functions from dog_api.py
 
 app = Flask(__name__)
@@ -42,6 +41,7 @@ def index():
 #     return render_template('response.html', assistant_response=assistant_response.strip("\n").strip())
 
 
+
 @app.route('/dog', methods=['GET'])
 def dog_api():
     random_dog = select_random_dog()
@@ -59,10 +59,7 @@ def dog_api():
 
     return render_template('dog.html', image_url=dog_img, dog_gpt_query_response=dog_gpt_query_response)
 
-# app.route('test')
 
-# def test():
-#     return render_template('test.html')
-print("hello from down here")
+
 if __name__ == '__main__':
     app.run('localhost',port=9997)

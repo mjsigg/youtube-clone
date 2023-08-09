@@ -4,7 +4,6 @@ import random
 ## Populating from URL so we don't have to make another network call. We should probably put this into a CSV to have it work as a DB.
 dog_breeds_from_url = set()
 
-
 def populate_breeds(dog_breeds_from_url):
     source = 'https://dog.ceo/api/breeds/list/all'
 
