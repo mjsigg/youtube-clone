@@ -12,9 +12,18 @@
         <title>User Data</title>
         <ul>
             {%for key,value in userData.items()%}
-                <li><strong> {{key.title()}} </strong> {{value}}</li>
+                <li><strong> {{key.title()}} : </strong> {{value}}</li>
             {%endfor%}
         </ul> 
+    </div>
+
+    <div>
+        <h1>This is coming from open weather api</h1>
+        <ul id="weather-info">
+            {%for key,value in weatherData.items()%}
+                <li><strong> {{key.title()}} : </strong> {{value}}</li>
+            {%endfor%}
+        </ul>
     </div>
 
 </body>

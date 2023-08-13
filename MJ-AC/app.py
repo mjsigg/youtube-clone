@@ -5,7 +5,7 @@ from flask_gzip import Gzip
 from dotenv import load_dotenv
 from chatgpt import initialize_openai
 from dog import select_random_dog, get_random_dog_img
-from index import call_ip_api
+from index import call_ip_api, call_openweather_api
 
 # Importing functions from dog_api.py
 
@@ -22,8 +22,10 @@ initialize_openai()
 
 @app.route('/', methods = ['GET'])
 def index():
+    os.getenv('OPEN_WEATHER_API_KEY')
+    weatherData = call_openweather_api()
     userData = call_ip_api()
-    return render_template('index.html', userData = userData)
+    return render_template('index.html', userData=userData, weatherData=weatherData)
 
 
 @app.route('/dog', methods=['GET'])

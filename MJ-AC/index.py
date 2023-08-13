@@ -7,7 +7,6 @@ load_dotenv()
 ##ip api
 ## url link to api https://ip-api.com/docs/api:json
 def call_ip_api():
-    # query = ''
     ## grab source
     source = f'http://ip-api.com/json/'
 
@@ -30,8 +29,6 @@ def call_ip_api():
             curr_user_data['lat'] = data['lat']
         if 'lon' in data:
             curr_user_data['lon'] = data['lon']
-        
-        
     else:
         requests.status_codes == 404
 
@@ -40,15 +37,28 @@ def call_ip_api():
 ## openweather
 
 def call_openweather_api():
+    weather_data = {}
     userData = call_ip_api()
     lat = userData['lat']
     lon = userData['lon']
     openWeather_api_key = os.getenv('OPEN_WEATHER_API_KEY')
-    print(openWeather_api_key)
+
     openWeather_api_source = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={openWeather_api_key}'
 
     response = requests.get(openWeather_api_source)
-    for data in response:
-        print(data)
+    if response.status_code == 200:
+        data = response.json()
 
+        for data in data['weather']:
+            if 'main' in data:
+                weather_data['main'] = data['main']
+            if 'description' in data:
+                weather_data['description'] = data['description']
+            if 'icon' in data:
+                weather_data['icon'] = data['icon']
+    else:
+        return "Weather API call failed"
+
+    return weather_data
+        
 call_openweather_api()
